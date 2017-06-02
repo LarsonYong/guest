@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap3 %}
+    {% bootstrap_css%}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <title>Event Manage Page</title>
+</head>
+
+<body>
+    <!-- nvg bar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">{{ event.name }}</a>
+            </div>
+            <div id="navbar" class="collaspe navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/event_manage/">Conference</a></li>
+                    <li><a href="/guest_manage/">Guest</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{user}}</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign func-->
+    <div class="page-header" style="padding-top: 80px;">
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form" method="post" action="/sign_index_action/{{ event.id }}/">
+                <div class="form-group">
+                    <input name="phone" type="text" placeholder="Type in phone number" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+                <font color="red">
+                    <br>{{ hint }}
+                    <br>{{ guest.realname }}
+                    <br>{{ guest.phone }}
+                </font>
+            </form>
+        </div>
+    </div>
+</body>

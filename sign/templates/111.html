@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+    <!--guest list-->
+    <div class="row" style="padding-top:  80px;">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th><th>Name</th><th>phone</th><th>Email</th><th>Check</th>
+                        <th>conference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for guest in guests %}
+                        <tr>
+                            <td>{{ guest.id }}</td>
+                            <td>{{ guest.realname }}</td>
+                            <td>{{ guest.phone }}</td>
+                            <td>{{ guest.email }}</td>
+                            <td>{{ guest.sign }}</td>}
+                            <td>{{ guest.event }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>

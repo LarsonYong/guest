@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap3 %}
+    {% bootstrap_css%}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <title>Guest Manage Page</title>
+</head>
+
+<body>
+    <!-- navgation bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/guest_manage/">Guest Manage System</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/event_manage/">Conference</a></li>
+            <li class="active"><a href="#">Guest</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">{{user}}</a></li>
+           <li><a href="/logout/">Logout</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <div class="container theme-showcase" role="main">
+
+      <!--conference list-->
+      <div class="page-header" style="padding-top: 60px;">
+        <!-- search-->
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form" method="get" action="/search_phone/">
+            <div class="form-group">
+              <input name="phone" type="text" placeholder="Phone" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+
+      <!--guest list-->
+      <div class="row" style="padding-top: 80px">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Realname</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Check</th>
+                <th>Conference id</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for guest in guests %}
+                <tr>
+                  <td>{{ guest.id }}</td>
+                  <td>{{ guest.realname }}</td>
+                  <td>{{ guest.phone }}</td>
+                  <td>{{ guest.email }}</td>
+                  <td>{{ guest.sign }}</td>
+                  <td>{{ guest.event }}</td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Page paginator-->
+      <div class="pagination">
+        <span class="step-links">
+          {% if guests.has_previous %}
+            <a href="?page={{ guest.previous_page_number }}">previous</a>
+          {% endif %}
+            <span class="current">
+              Page {{ guests.number }} of {{guests.paginator.num_pages }}.
+            </span>
+          {% if guests.has_next %}
+            <a href="?page={{ guests.next_page_number }}">next</a>
+          {% endif %}
+        </span>
+      </div>
+</body>
+</html>
